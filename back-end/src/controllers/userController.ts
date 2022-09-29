@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import userServices from '../services/userServices.js';
 
 const userController = {
 	create
@@ -7,5 +8,9 @@ const userController = {
 export default userController;
 
 async function create(req: Request, res: Response) {
-	res.status(201).send('Rota funcionando');
+	const userInfo = req.body;
+
+	await userServices.create(userInfo);
+
+	res.sendStatus(201);
 }
