@@ -5,6 +5,7 @@ import userValidations from '../middlewares/userValidations.js';
 
 const userRouter = Router();
 
-userRouter.post('/signin', userValidations.validadeSignInInfo, userController.create);
+userRouter.post('/signup', userValidations.validadeSignUpInfo, userController.create);
+userRouter.post('/sgin');
 
 export default userRouter;

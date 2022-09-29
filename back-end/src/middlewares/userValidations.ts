@@ -6,12 +6,12 @@ import { Request, Response, NextFunction } from 'express';
 const JoiDate = joi.extend(DateExtension);
 
 const userValidations = {
-	validadeSignInInfo
+	validadeSignUpInfo
 };
 
 export default userValidations;
 
-function validadeSignInInfo(req: Request, res: Response, next: NextFunction) {
+function validadeSignUpInfo(req: Request, res: Response, next: NextFunction) {
 	const userInfo = req.body;
 	const userInfoSchema = joi.object({
 		email: joi.string().email().required(),
