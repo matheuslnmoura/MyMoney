@@ -1,0 +1,119 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  email String @unique
+  password String
+  name String
+  birthday DateTime
+  createdAt DateTime @default(now())
+  category Category[]
+  account Account[]
+  card Card[]
+
+  @@map("users")
+}
+
+model Category {
+  id Int @id @default(autoincrement())
+  name String
+  isDefault Boolean @default(false)
+  user User? @relation(fields: [userId], references: [id])
+  userId Int? 
+  transaction Transaction[]
+  cardTransaction CardTransaction[]
+
+  @@map("categories")
+}
+
+model AccountType {
+  id Int @id @default(autoincrement())
+  name Int
+  account Account[]
+
+  @@map("accountTypes")
+}
+
+model Account {
+  id Int @id @default(autoincrement())
+  name String
+  balance Int
+  user User @relation(fields: [userId], references: [id])
+  userId Int 
+  accountType AccountType @relation(fields: [accountTypeId], references: [id])
+  accountTypeId Int
+  card Card[]
+  transaction Transaction[]
+
+  @@map("accounts")
+}
+
+model CardCompany {
+  id Int @id @default(autoincrement())
+  name String
+  card Card[]
+
+  @@map("cardsCompanies")
+}
+
+model Card {
+  id Int @id @default(autoincrement())
+  name String
+  limit Int
+  company CardCompany @relation(fields: [companyId], references: [id])
+  companyId Int
+  account Account? @relation(fields: [accountId], references: [id])
+  accountId Int?
+  user User @relation(fields: [userId], references: [id])
+  userId Int
+  cardTransaction CardTransaction[]
+
+  @@map("cards")
+}
+
+model TransactionType {
+  id Int @id @default(autoincrement())
+  type String
+  transaction Transaction[]
+  cardTransaction CardTransaction[]
+
+  @@map("transactionsTypes")
+}
+
+model Transaction {
+  id Int @id @default(autoincrement())
+  amount Int
+  account Account @relation(fields: [accountId], references: [id])
+  accountId Int
+  type TransactionType @relation(fields: [typeId], references: [id])
+  typeId Int
+  category Category @relation(fields: [cateoryId], references: [id])
+  cateoryId Int
+  createdAt DateTime @default(now())
+
+  @@map("transactions")
+}
+
+model CardTransaction {
+  id Int @id @default(autoincrement())
+  amount Int
+  card Card @relation(fields: [cardId], references: [id])
+  cardId Int
+  type TransactionType @relation(fields: [typeId], references: [id])
+  typeId Int
+  category Category @relation(fields: [cateoryId], references: [id])
+  cateoryId Int
+  createdAt DateTime @default(now())
+
+  @@map("cardTransactions")
+}
