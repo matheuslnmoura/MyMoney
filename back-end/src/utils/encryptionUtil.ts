@@ -1,7 +1,8 @@
 import bcrypt from 'bcrypt';
 
 const encryptionUtil = {
-	encryptPassword
+	encryptPassword,
+	comparePassword
 };
 
 export default encryptionUtil;
@@ -9,4 +10,12 @@ export default encryptionUtil;
 function encryptPassword(password: string) {
 	const salt = 12;
 	return bcrypt.hashSync(password, salt);
+}
+
+function comparePassword(password: string, hashPassword: string) {
+	const isCorrectPassword = bcrypt.compareSync(password, hashPassword);
+	if (!isCorrectPassword) {
+		throw {code: 401, message: 'Incorrect password.'};
+	}
+	return;
 }
