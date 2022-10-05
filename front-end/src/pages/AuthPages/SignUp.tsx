@@ -11,7 +11,7 @@ import { BsEye, BsEyeSlash } from 'react-icons/bs';
 import registrationApi from '../../services/registrationApi';
 import { useUser } from '../../contexts/userContext';
 
-type errorMessage = {
+export type errorMessage = {
 	name?: string | null,
 	email?: string | null,
 	password?: string | null,

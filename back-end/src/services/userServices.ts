@@ -53,7 +53,7 @@ async function signIn(userInfo: UserSignInInputData) {
 async function checkIfRegistred(email: string) {
 	const user = await userRepository.findByEmail(email);
 	if(!user) {
-		throw {code: 404, message: 'User not found. Sign up instead.'};
+		throw {code: 404, message: {email: 'User not found. Sign up instead.'}};
 	}
 	return user;
 }

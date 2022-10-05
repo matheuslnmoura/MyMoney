@@ -8,12 +8,10 @@ const Dashboard: React.FC = () => {
 
 	const user: UserType = JSON.parse(localStorage.getItem('user')); 
 	if(!user) {
-		console.log('entrpu aqui');
 		useEffect(()=>{
 			navigate('/signup');
 		}, []);
 	} else {
-		console.log('entrou aqui tbm');
 		return(
 			<>
 				<h1>Beautiful dashboard</h1>

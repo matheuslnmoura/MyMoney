@@ -15,7 +15,7 @@ function encryptPassword(password: string) {
 function comparePassword(password: string, hashPassword: string) {
 	const isCorrectPassword = bcrypt.compareSync(password, hashPassword);
 	if (!isCorrectPassword) {
-		throw {code: 401, message: 'Incorrect password.'};
+		throw {code: 401, message: {password: 'Incorrect email or password.'}};
 	}
 	return;
 }
