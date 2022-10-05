@@ -4,10 +4,11 @@
 		"esModuleInterop": true,
     "module": "es6",
     "target": "es6",
-    "jsx": "react"
+    "jsx": "react",
+    "moduleResolution":"node",
   },
   "include": [
     "src"
-  ],
-  "compileOnSave": false
+, "types/index.d.ts"  ],
+  "compileOnSave": false,
 }

@@ -35,7 +35,7 @@ async function create(userInfo: UserSignUpInputData) {
 async function checkIfEmailUnique(email: string) {
 	const dbEmail = await userRepository.findByEmail(email);
 	if(dbEmail) {
-		throw {code: 409, message: 'This email is already Registred. Login instead.'};
+		throw {code: 409, message: {email:'This email is already Registred. Login instead.'}};
 	}
 	return;
 }
