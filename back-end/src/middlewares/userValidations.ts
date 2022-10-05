@@ -1,9 +1,6 @@
 import joi from 'joi';
-import DateExtension from '@joi/date';
 import chalk from 'chalk';
 import { Request, Response, NextFunction } from 'express';
-
-const JoiDate = joi.extend(DateExtension);
 
 const userValidations = {
 	validadeSignUpInfo,
@@ -18,7 +15,7 @@ function validadeSignUpInfo(req: Request, res: Response, next: NextFunction) {
 		email: joi.string().email().required(),
 		password: joi.string().min(4).required(),
 		name: joi.string().min(3).required(),
-		birthday: JoiDate.date().format('YYYY-MM-DD').required()
+		birthday: joi.date().min('01-01-1900').max('now').required()
 	});
 
 	const {error} = userInfoSchema.validate(userInfo, {abortEarly: false});
