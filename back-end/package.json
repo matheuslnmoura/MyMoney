@@ -3,12 +3,13 @@
   "type": "module",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "build": "npx prisma migrate deploy && tsc",
-    "start": "node dist/server.js",
+    "build": "tsc",
+    "start": "npm run prisma:deploy && node dist/src/server.js",
     "dev": "nodemon src/server.ts",
     "prisma-test": "dotenv -e .env.test prisma migrate reset --skip-seed",
+    "prisma:deploy": "prisma migrate deploy",
     "test:integration": "npm run prisma-test  && NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -- -i --testPathPattern=tests/integration"
   },
   "keywords": [],
@@ -41,7 +42,7 @@
   },
   "dependencies": {
     "@joi/date": "^2.1.0",
-    "@prisma/client": "^4.0.0",
+    "@prisma/client": "^3.13.0",
     "bcrypt": "^5.0.1",
     "chalk": "^4.1.2",
     "cors": "^2.8.5",
