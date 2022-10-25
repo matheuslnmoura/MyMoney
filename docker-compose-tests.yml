@@ -6,7 +6,7 @@ services:
     ports:
       - 1234:5432
     env_file:
-      - ./back-end/.env.docker
+      - ./back-end/.env.docker.test
     volumes:
       - pg:/var/lib/postgresql/data
 
