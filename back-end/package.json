@@ -10,7 +10,7 @@
     "dev": "nodemon src/server.ts",
     "prisma-test": "dotenv -e .env.test prisma migrate reset --skip-seed",
     "prisma:deploy": "prisma migrate deploy",
-    "test:integration": "NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -- -i --testPathPattern=tests/integration"
+    "test:integration": "npx prisma generate NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -- -i --testPathPattern=tests/integration"
   },
   "keywords": [],
   "author": "",
