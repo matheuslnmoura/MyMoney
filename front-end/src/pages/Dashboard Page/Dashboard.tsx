@@ -14,7 +14,7 @@ const Dashboard: React.FC = () => {
 	} else {
 		return(
 			<>
-				<h1>Beautiful dashboard</h1>
+				<h1>My Very MuchBeautiful dashboard</h1>
 				<h2>id: {user.id} </h2>
 				<h2>name: {user.name} </h2>
 				<h2>email: {user.email} </h2>
