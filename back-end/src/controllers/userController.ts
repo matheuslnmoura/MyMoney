@@ -26,5 +26,5 @@ async function signIn(req: Request, res: Response) {
 }
 
 async function getUsers(req: Request, res: Response) {
-	res.status(200).send("(Maybe) It's working!");
+	res.status(200).send("(It's working!");
 }
